@@ -23,6 +23,6 @@ const ThemeProvider = ({
                 {children}
             </div>
         );
-    };
+    }
 };
 export default ThemeProvider;
