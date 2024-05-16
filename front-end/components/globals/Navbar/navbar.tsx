@@ -24,16 +24,16 @@ const Navbar = () => {
             <div className={styles.logo}>CodeX.</div>
 
             <div className={styles.links}>
-                <ThemeToggle />
                 <MaInNav className={styles.links} />
             </div>
 
             <div className={styles.social}>
+                <ThemeToggle />
                 <AuthLinks />
-                <Image width={24} height={24} src={Facebook} alt="facebook.png" />
-                <Image width={24} height={24} src={Instagram} alt="facebook.png" />
-                <Image width={24} height={24} src={TikTok} alt="facebook.png" />
-                <Image width={24} height={24} src={Youtube} alt="facebook.png" />
+                {/*<Image width={24} height={24} src={Facebook} alt="facebook.png" />*/}
+                {/*<Image width={24} height={24} src={Instagram} alt="facebook.png" />*/}
+                {/*<Image width={24} height={24} src={TikTok} alt="facebook.png" />*/}
+                {/*<Image width={24} height={24} src={Youtube} alt="facebook.png" />*/}
             </div>
         </div>
     )
