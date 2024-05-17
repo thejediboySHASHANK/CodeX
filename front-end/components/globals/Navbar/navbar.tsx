@@ -13,7 +13,11 @@ const Navbar = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.logo}>CodeX.</div>
+            <div className={styles.logo}>
+                <Link href="/">
+                    CodeX.
+                </Link>
+            </div>
 
             <div className={styles.links}>
                 <MaInNav className={styles.links} />
