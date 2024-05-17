@@ -72,13 +72,6 @@ const CategoryList = () => {
             <div className={styles.categories}>
                 {categories.map((category) => (
                     <Link href={category.href} key={category.name} className={`${styles.category} ${styles[category.name.toLowerCase()]}`}>
-                        {/*<Image*/}
-                        {/*    src={category.imageSrc}*/}
-                        {/*    alt={category.imageAlt}*/}
-                        {/*    width={category.imageWidth}*/}
-                        {/*    height={category.imageHeight}*/}
-                        {/*    className={styles.image}*/}
-                        {/*/>*/}
                         {category.icons}
                         {category.name}
                     </Link>
