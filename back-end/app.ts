@@ -1,3 +1,5 @@
+import userRoute from "./routes/user.route";
+
 require("dotenv").config();
 import express, {json, NextFunction} from "express";
 
@@ -17,6 +19,8 @@ app.use(cors({
     origin: process.env.ORIGIN
 }));
 
+// /routes
+app.use("/api/v1", userRoute);
 
 // Test API Route
 app.get("/test", (req: Request, res: Response, next: NextFunction) => {
