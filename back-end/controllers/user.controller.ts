@@ -10,6 +10,8 @@ import ejs from "ejs"
 import sendMail from "../utils/sendMail";
 import {accessTokenOptions, refreshTokenOptions, sendToken} from "../utils/jwt";
 import {redis} from "../utils/redis";
+import {createTestAccount} from "nodemailer";
+import {getUserById, getUserId} from "../services/user.service";
 
 // Register User
 interface IRegistration {
@@ -223,3 +225,34 @@ export const updateAccessToken = CatchAsyncError(async (req: Request, res: Respo
 })
 
 // Get User Info
+export const getUserInfo = CatchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const userId = req.user?._id;
+        getUserById(userId, res);
+    } catch (error: any) {
+        return next(new ErrorHandler(error.message, 400));
+    }
+})
+
+interface ISocialAuthBody {
+    email: string;
+    name: string;
+    avatar: string;
+}
+
+// Social Auth
+export const socialAuth = CatchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {email, name, avatar} = req.body as ISocialAuthBody;
+        const user = await userModel.findOne({email});
+        if (!user) {
+            const newUser = await userModel.create({email, name, avatar});
+            sendToken(newUser, 200, res);
+        }
+        else {
+            sendToken(user, 200, res);
+        }
+    } catch (error: any) {
+        return next(new ErrorHandler(error.message, 400));
+    }
+})
