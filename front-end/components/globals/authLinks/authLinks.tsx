@@ -18,7 +18,7 @@ const AuthLinks = (props: Props) => {
                 <Link href="/login" className={styles.link}>Login</Link>
             ) : (
                 <>
-                    <Link href="/write">
+                    <Link href={`/post`}>
                         Write
                     </Link>
                     <span className={styles.link}>Logout</span>

@@ -13,7 +13,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css"
 
 type Props = {};
-const WritePage = (props: Props) => {
+const PostPage = (props: Props) => {
 
     const [open, setOpen] = useState(false);
     const [value, setValue]: any = useState(false)
@@ -44,4 +44,4 @@ const WritePage = (props: Props) => {
         </div>
     );
 };
-export default WritePage;
+export default PostPage;
