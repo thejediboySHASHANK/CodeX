@@ -9,6 +9,7 @@ import jwt, {Secret} from "jsonwebtoken"
 import ejs from "ejs"
 import sendMail from "../utils/sendMail";
 import {sendToken} from "../utils/jwt";
+import {redis} from "../utils/redis";
 
 // Register User
 interface IRegistration {
@@ -167,11 +168,24 @@ export const logoutUser = CatchAsyncError(async (req: Request, res: Response, ne
         res.cookie("access_token", "", {maxAge: 1});
         res.cookie("refresh_token", "", {maxAge: 1});
 
+        // Delete Redis session
+        const userId = req.user?._id || '';
+        redis.del(userId);
+
         res.status(200).json({
             success: true,
             message: "Logged Out successfully",
         });
     } catch (error: any) {
         return next(new ErrorHandler(error.message, 400));
+    }
+})
+
+// Update Access Token
+export const updateAccessToken = CatchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+
+    } catch (error) {
+
     }
 })
