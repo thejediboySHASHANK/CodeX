@@ -1,13 +1,14 @@
 import path from "path";
 
 require('dotenv').config()
-import {Request, Response, NextFunction} from "express";
+import express, {Request, Response, NextFunction} from "express";
 import userModel, {IUser} from "../models/user.model";
 import ErrorHandler from "../utils/ErrorHandler";
 import {CatchAsyncError} from "../middleware/catchAsyncErrors";
 import jwt, {Secret} from "jsonwebtoken"
 import ejs from "ejs"
 import sendMail from "../utils/sendMail";
+import {sendToken} from "../utils/jwt";
 
 // Register User
 interface IRegistration {
@@ -121,6 +122,55 @@ export const activateUser = CatchAsyncError(async (req: Request, res: Response, 
             success: true,
         })
 
+    } catch (error: any) {
+        return next(new ErrorHandler(error.message, 400));
+    }
+})
+
+// Login User
+interface ILoginRequest {
+    email: string;
+    passwordHash: string;
+}
+
+export const loginUser = CatchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const {email, passwordHash} = req.body as ILoginRequest;
+
+        if (!email || !passwordHash) {
+            return next(new ErrorHandler("Please Enter email and password", 400));
+        }
+
+        const user = await userModel.findOne({email}).select("+passwordHash")
+
+        if (!user) {
+            return next(new ErrorHandler("Invalid email or password", 400));
+        }
+
+        const isPasswordMatch = await user.comparePassword(passwordHash);
+
+        // if the password does not match
+        if (!isPasswordMatch) {
+            return next(new ErrorHandler("Invalid email or password", 400));
+        }
+
+        sendToken(user, 200, res);
+
+    } catch (error: any) {
+        return next(new ErrorHandler(error.message, 400));
+    }
+})
+
+// User Logout
+export const logoutUser = CatchAsyncError(async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        res.cookie("access_token", "", {maxAge: 1});
+        res.cookie("refresh_token", "", {maxAge: 1});
+
+        res.status(200).json({
+            success: true,
+            message: "Logged Out successfully",
+        });
     } catch (error: any) {
         return next(new ErrorHandler(error.message, 400));
     }
