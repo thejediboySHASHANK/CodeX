@@ -6,8 +6,19 @@ import Image from "next/image";
 import Style from "../../../public/style.png"
 import Fashion from "../../../public/fashion.png"
 import {BookCopy, Brain, Code, Coins, Component, Heart, icons} from "lucide-react";
+import axios from "axios";
+
+const getCategories = async () => {
+    const res: any = axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL2}get-all`);
+
+    if (!res) throw new Error("Categories do not exist");
+
+    return res.data.categories;
+};
 
 const CategoryList = () => {
+
+    getCategories();
 
     const categories = [
         {

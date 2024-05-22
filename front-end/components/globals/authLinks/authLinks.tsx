@@ -3,18 +3,23 @@
 import styles from "./authLinks.module.css"
 import Link from "next/link";
 import {useState} from "react";
+import {useAuth} from "@/context/user-context";
 
 type Props = {};
 const AuthLinks = (props: Props) => {
 
     const [open, setOpen] = useState(false);
+    const { user, isAuthenticated }: any = useAuth();
 
     // temporary
-    const status = "notAuthenticated"
+    const status = {isAuthenticated};
+
+    console.log(isAuthenticated);
+    console.log({user});
 
     return (
         <>
-            {status === "notAuthenticated" ? (
+            {!isAuthenticated ? (
                 <Link href="/login" className={styles.link}>Login</Link>
             ) : (
                 <>
@@ -34,7 +39,7 @@ const AuthLinks = (props: Props) => {
                     <Link href="/">Homepage</Link>
                     <Link href="/">About</Link>
                     <Link href="/">Contact</Link>
-                    {status === "notAuthenticated" ? (
+                    {!isAuthenticated ? (
                         <Link href="/login">Login</Link>
                     ) : (
                         <>

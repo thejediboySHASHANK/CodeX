@@ -14,6 +14,7 @@ export interface IUser extends Document {
         url: string;
     };
     posts: Array<{ postId: mongoose.Schema.Types.ObjectId }>;
+    comments: Array<{ commentId: mongoose.Schema.Types.ObjectId }>;
     comparePassword: (password: string) => Promise<boolean>;
     SignAccessToken : () => string;
     SignRefreshToken: () => string;
@@ -50,6 +51,14 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
             postId: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Post'
+            }
+        }
+    ],
+    comments: [
+        {
+            commentId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Comment'
             }
         }
     ],

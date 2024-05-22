@@ -11,7 +11,7 @@ import sendMail from "../utils/sendMail";
 import {accessTokenOptions, refreshTokenOptions, sendToken} from "../utils/jwt";
 import {redis} from "../utils/redis";
 import {createTestAccount} from "nodemailer";
-import {getUserById, getUserId} from "../services/user.service";
+import {getUserById} from "../services/user.service";
 
 // Register User
 interface IRegistration {

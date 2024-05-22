@@ -1,0 +1,112 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.wrapper {
+    background-color: var(--softBg);
+    padding: 50px 100px; /* Adjusted for potentially wider appearance */
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Reduced gap for a compact form */
+    border-radius: 10px;
+    width: 50%; /* Set a specific width to control form size */
+    max-width: 500px; /* Ensuring it doesn't get too wide on larger screens */
+}
+
+.divIcon {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.embedDiv {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #497df2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.OTPdiv {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.inputBox {
+    width: 65px;
+    height: 65px;
+    /*background-color: transparent;*/
+    border: 3px solid black;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+}
+
+.error {
+    border: 3px solid red;
+}
+
+.border {
+    border: 3px solid #0000004a;
+}
+
+.passDiv {
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: #4688F1;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+.subtext {
+    margin-top: 5px;
+    font-size: 15px;
+    text-align: center;
+}
+
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .wrapper {
+        padding: 30px;
+        width: 80%; /* More responsive width for smaller screens */
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .wrapper {
+        padding: 20px;
+    }
+    .input, .button {
+        font-size: 14px;
+    }
+}

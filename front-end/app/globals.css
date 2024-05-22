@@ -1,9 +1,18 @@
+
 :root {
   --bg: white;
   --textColor: black;
   --softBg: #f0f0f0;
   --softTextColor: #626262;
 }
+
+/*For Removing Arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 
 * {
   padding: 0;
@@ -48,6 +57,8 @@ a {
   padding-left: 80px;
   padding-right: 80px;
 }
+
+
 
 /*Responsive Layout Media Queries*/
 @media screen and (max-width: 1536px) {

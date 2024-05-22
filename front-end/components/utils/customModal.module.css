@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .box {
+        @apply absolute top-[50px] left-[50px] -translate-x-1/2 -translate-y-1/2 w-[450px] bg-white dark:bg-slate-900
+        rounded-md shadow p-4 outline-none;
+    }
+}
